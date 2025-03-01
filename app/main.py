@@ -9,14 +9,14 @@ Main script
 
 # Importing packages and modules
 from flask import Flask
-from routes.estimation import estimation_blueprint
+from routes.guessing import guessing_blueprint
 
 # Setting the app
 app = Flask(__name__)
 app.config["VERSION"] = "1.3.0"
 
 # Registering the blueprints
-app.register_blueprint(estimation_blueprint)
+app.register_blueprint(guessing_blueprint)
 
 # Running the app
 if __name__ == "__main__":

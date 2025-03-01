@@ -10,16 +10,16 @@ import json
 from sources.fft import FFT
 from sources.envelope_analysis import EnvelopeAnalysis
 from sources.feature_extractor import FeatureExtractor
-from sources.estimator import Estimator
+from sources.guesser import Guesser
 
 # Setting the blueprint
-estimation_blueprint = Blueprint("estimation_routes", __name__)
+guessing_blueprint = Blueprint("guessing_routes", __name__)
 
-# Estimation route
-@estimation_blueprint.route("/estimation/estimate", methods=["POST",])
-def estimate():
+# Guessing route
+@guessing_blueprint.route("/guessing/guess", methods=["POST",])
+def guess():
 
-    # Trying to estimate RPM...
+    # Trying to guess the RPM...
     try:
 
         # Extracting the payload
@@ -42,18 +42,18 @@ def estimate():
         envelope_features = feature_extractor.extract(envelope_amplitudes, envelope_frequencies)
 
         # Processing the features through the deep learning model
-        estimator = Estimator()
-        estimated_rpm = estimator.estimate(original_features, envelope_features)
+        guesser = Guesser()
+        guessed_rpm = guesser.guess(original_features, envelope_features)
 
         # Setting up the results
         results = {
-            "estimation_success": True,
-            "estimated_rpm": estimated_rpm,
+            "guessing_success": True,
+            "guessed_rpm": guessed_rpm,
             "confidence_margin": feature_extractor.confidence_margin
         }
         status_code = 200
 
-    # If it was not possible to estimate...
+    # If it was not possible to guess...
     except Exception as ex:
 
         # Logging the exception
@@ -61,8 +61,8 @@ def estimate():
 
         # Setting up the results
         results = {
-            "estimation_success": False,
-            "estimated_rpm": None,
+            "guessing_success": False,
+            "guessed_rpm": None,
             "confidence_margin": None
         }
         status_code = 500

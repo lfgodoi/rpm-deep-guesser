@@ -1,6 +1,6 @@
-## RPM Deep Estimator (rpm-deep-estimator)
+## RPM Deep Guesser (rpm-deep-guesser)
 
-A deep learning-based RPM estimator based on spectral features extracted from vibration signals of rotating machines.
+A deep learning-based RPM guesser based on spectral features extracted from vibration signals of rotating machines.
 
 - Developer: _Leonardo Franco de Godói_
 - GitHub profile: _https://github.com/lfgodoi_

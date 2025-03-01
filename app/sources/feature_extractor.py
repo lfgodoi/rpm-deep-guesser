@@ -38,5 +38,7 @@ class FeatureExtractor:
         for feature_frequency in self.feature_frequencies:
             index = np.argmin(np.abs(frequencies - feature_frequency))
             features.append(float(amplitudes[index]))
+        features = np.array(features)
+        features = (features - features.min())/(features.max() - features.min())
         self.update_confidence_margin(frequencies)
         return features

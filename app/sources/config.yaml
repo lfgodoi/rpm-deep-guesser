@@ -3,3 +3,4 @@ precision: 6
 eps: 1e-6
 feature_frequency_resolution: 0.25
 feature_max_frequency: 1000
+model_path: "./model"
